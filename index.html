@@ -6,61 +6,69 @@
   <meta name="theme-color" content="#071B33" />
   <title>Costa del Sol Bachelor Club</title>
   <style>
-    :root{--navy:#071B33;--gold:#B98A38;--sand:#F7F2E8;--cream:#FDFBF7;--muted:#6b7280}
+    :root{--navy:#071B33;--gold:#B98A38;--sand:#F7F2E8;--cream:#FDFBF7;--soft:#E9DDC8}
     *{box-sizing:border-box}
     html,body{margin:0;padding:0;background:var(--sand);color:var(--navy);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    body{min-height:100vh}
     a{color:inherit;text-decoration:none}
     button,input,select{font:inherit}
     .hidden{display:none!important}
+    .app{display:none}
     .screen{min-height:100vh;padding:22px}
     .center{display:flex;align-items:center;justify-content:center}
     .login-bg{background:radial-gradient(circle at top,#fffaf0 0%,#f7f2e8 55%,#e9dcc4 100%)}
-    .login-card{width:100%;max-width:430px;background:rgba(255,255,255,.84);border:1px solid rgba(185,138,56,.35);border-radius:30px;padding:28px;text-align:center;box-shadow:0 18px 50px rgba(7,27,51,.16)}
+    .login-card{width:100%;max-width:430px;background:rgba(255,255,255,.86);border:1px solid rgba(185,138,56,.35);border-radius:30px;padding:28px;text-align:center;box-shadow:0 18px 50px rgba(7,27,51,.16)}
     .crest{width:112px;height:112px;border:2px solid var(--gold);border-radius:56px 56px 18px 18px;margin:0 auto 18px;background:#F6F1E7;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy)}
     .sun{width:30px;height:30px;border-radius:50%;border:2px solid var(--gold);position:relative;margin-bottom:6px}
     .sun:before,.sun:after{content:"";position:absolute;background:var(--gold);left:50%;top:50%;transform:translate(-50%,-50%)}
     .sun:before{width:46px;height:2px}.sun:after{height:46px;width:2px}
     .palm{font-size:38px;line-height:1}
-    .eyebrow{color:var(--gold);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.28em}
+    .eyebrow{color:var(--gold);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.25em}
     h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;margin:0}
-    .title{font-size:33px;text-transform:uppercase;letter-spacing:.12em}
+    .title{font-size:32px;text-transform:uppercase;letter-spacing:.12em}
     .subtitle{font-size:18px;text-transform:uppercase;letter-spacing:.22em;margin-top:6px}
-    .copy{font-size:14px;line-height:1.6;color:rgba(7,27,51,.68);margin:18px auto 0;max-width:320px}
+    .copy{font-size:14px;line-height:1.6;color:rgba(7,27,51,.68);margin:18px auto 0;max-width:340px}
     .pw{width:100%;margin-top:22px;border:1px solid rgba(185,138,56,.42);background:white;border-radius:18px;padding:15px;text-align:center;outline:none}
     .pw:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(185,138,56,.18)}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;border:none;border-radius:18px;padding:15px 18px;background:var(--navy);color:white;font-weight:700;margin-top:12px;cursor:pointer}
-    .btn.gold{background:var(--gold)} .btn.light{background:white;color:var(--navy);border:1px solid rgba(185,138,56,.35)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;border:none;border-radius:18px;padding:14px 16px;background:var(--navy);color:white;font-weight:800;margin-top:10px;cursor:pointer;text-align:center}
+    .btn.gold{background:var(--gold)} .btn.light{background:white;color:var(--navy);border:1px solid rgba(185,138,56,.35)} .btn.small{padding:10px 12px;font-size:13px;margin-top:0}
     .error{color:#a21a1a;font-size:14px;margin:10px 0 0;display:none}
-    .app{display:none}
     header{padding:30px 20px;text-align:center;background:radial-gradient(circle at top,#fffaf0 0%,#f7f2e8 52%,#efe3cc 100%);border-bottom:1px solid rgba(185,138,56,.3)}
-    header .crest{background:rgba(255,255,255,.5);box-shadow:0 6px 18px rgba(7,27,51,.08)}
+    header .crest{background:rgba(255,255,255,.52);box-shadow:0 6px 18px rgba(7,27,51,.08)}
     .rule{display:flex;align-items:center;gap:10px;margin:12px auto;max-width:260px}.rule span{height:1px;background:var(--gold);flex:1}.rule i{width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
-    main{padding:18px;max-width:980px;margin:0 auto;display:grid;gap:18px}
+    main{padding:16px;max-width:1060px;margin:0 auto;display:grid;gap:16px}
     .card{background:white;border:1px solid rgba(185,138,56,.25);border-radius:24px;box-shadow:0 6px 18px rgba(7,27,51,.06);overflow:hidden}
-    .card.pad{padding:18px}
-    .card-head{padding:18px;border-bottom:1px solid rgba(185,138,56,.2);display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .card.pad{padding:16px}
+    .card-head{padding:16px;border-bottom:1px solid rgba(185,138,56,.2);display:flex;align-items:center;justify-content:space-between;gap:14px}
     .card-head h3{font-size:24px}.small{font-size:13px;color:rgba(7,27,51,.64);line-height:1.5}.icon{font-size:24px;color:var(--gold)}
     .flight{background:var(--navy);color:white}.flight .small{color:rgba(255,255,255,.65)}.flight .card-head{border-color:rgba(255,255,255,.12)}
-    .flight-item{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:15px;margin-top:12px}
+    .flight-item{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:15px;margin:12px}
     .flight-item h4{font-size:26px;margin:4px 0}
-    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:15px}
+    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:14px}
     .tab{border:1px solid rgba(185,138,56,.25);background:#FDFBF7;color:var(--navy);border-radius:18px;padding:12px;text-align:left}
     .tab.active{background:var(--navy);color:white;border-color:var(--gold)}
     .tab b{display:block;color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.18em}.tab span{font-family:Georgia,serif;font-size:14px}
-    .day-panel{padding:0 15px 15px}
+    .day-panel{padding:0 14px 14px}
     .event{display:flex;gap:12px;background:#FDFBF7;border:1px solid rgba(185,138,56,.18);border-radius:18px;padding:13px;margin-bottom:10px}
     .time{min-width:74px;background:white;border-radius:14px;padding:9px 6px;text-align:center;font-weight:800;font-size:12px;color:var(--navy);box-shadow:0 3px 10px rgba(7,27,51,.05)}
     .event h4{font-size:18px;margin-bottom:4px}.event p{margin:0;font-size:13px;line-height:1.45;color:rgba(7,27,51,.65)}
     .mini-link{display:inline-flex;margin-top:9px;border:1px solid rgba(185,138,56,.35);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700}
-    .map-list{display:grid;gap:9px;padding:15px;background:#FDFBF7}
-    .map-row{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid rgba(185,138,56,.2);border-radius:17px;padding:12px;background:white;color:var(--navy)}
-    .map-row.active{background:var(--navy);color:white;border-color:var(--gold)}
-    .map-ico{width:40px;height:40px;border-radius:14px;background:#F6F1E7;color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-    .map-row.active .map-ico{background:rgba(255,255,255,.12)}
-    .selected{padding:15px;background:#E9DDC8}.selected-box{background:rgba(255,255,255,.92);border:1px solid rgba(185,138,56,.2);border-radius:20px;padding:15px}
-    .actions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:13px}
-    .spots{display:grid;gap:10px;padding:15px}
+    .map-wrap{background:var(--soft);padding:12px}
+    .map-top{background:rgba(255,255,255,.94);border:1px solid rgba(185,138,56,.22);border-radius:20px;padding:14px;margin-bottom:10px}
+    .chip-row{display:flex;gap:8px;overflow-x:auto;padding:0 0 10px;margin:0 -2px 8px 0;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+    .chip{flex:0 0 auto;display:flex;align-items:center;gap:7px;border:1px solid rgba(185,138,56,.3);background:white;color:var(--navy);border-radius:999px;padding:9px 11px;font-size:12px;font-weight:800;white-space:nowrap;scroll-snap-align:start}
+    .chip.active{background:var(--navy);color:white;border-color:var(--gold)}
+    .selected-title{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+    .selected-title h4{font-size:22px;margin-top:3px}
+    .selected-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:15px;background:#F6F1E7;color:var(--gold);font-size:21px;flex-shrink:0}
+    .actions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px}
+    .map-frame{height:340px;border:1px solid rgba(185,138,56,.25);border-radius:22px;overflow:hidden;background:white;position:relative}
+    .map-frame iframe{width:100%;height:100%;border:0;display:block}
+    .map-badge{position:absolute;top:10px;left:10px;background:rgba(255,255,255,.92);padding:6px 9px;border-radius:999px;font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--gold);font-weight:800;box-shadow:0 4px 12px rgba(7,27,51,.12)}
+    .route-card{background:var(--navy);color:white}
+    .route-card .card-head{border-color:rgba(255,255,255,.12)}
+    .route-box{padding:14px;display:grid;gap:10px}
+    select{width:100%;border:1px solid rgba(255,255,255,.18);background:white;color:var(--navy);border-radius:16px;padding:12px;min-height:46px}
+    .spots{display:grid;gap:10px;padding:14px}
     details{background:#FDFBF7;border:1px solid rgba(185,138,56,.2);border-radius:18px;padding:14px}
     summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
     summary::-webkit-details-marker{display:none}
@@ -68,7 +76,7 @@
     .toast{position:fixed;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.96);border:1px solid rgba(185,138,56,.35);border-radius:20px;padding:13px;box-shadow:0 12px 30px rgba(7,27,51,.18);display:none;z-index:10}
     .toast p{margin:3px 0;font-size:12px;word-break:break-all}
     footer{text-align:center;padding:12px 20px 28px}
-    @media(min-width:760px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.actions{grid-template-columns:1fr 1fr}.tabs{grid-template-columns:repeat(4,1fr)}}
+    @media(min-width:820px){main{grid-template-columns:1.1fr .9fr}.wide{grid-column:1/-1}.tabs{grid-template-columns:repeat(4,1fr)}.actions{grid-template-columns:1fr 1fr}.route-box{grid-template-columns:1fr 1fr auto;align-items:end}.route-box .btn{height:46px;margin-top:0;min-width:130px}.map-frame{height:420px}}
   </style>
 </head>
 <body>
@@ -98,10 +106,8 @@
     <main>
       <section class="card flight">
         <div class="card-head"><div><div class="eyebrow">Flights</div><h3>Aktuelle Fluginfos</h3></div><div class="icon">✈️</div></div>
-        <div class="card pad" style="background:transparent;border:none;box-shadow:none;padding-top:4px">
-          <div class="flight-item"><div class="eyebrow">Hinflug · Do. 28.05.2026</div><h4>EW7536</h4><p class="small">Hamburg → Málaga<br>Geplant: 14:35 HAM → 18:00 AGP</p><a class="btn gold" href="https://www.google.com/search?q=EW7536%20current%20flight%20status" target="_blank">Live-Status öffnen</a></div>
-          <div class="flight-item"><div class="eyebrow">Rückflug · So. 31.05.2026</div><h4>EW7539</h4><p class="small">Málaga → Hamburg<br>Geplant: 17:50 AGP → 21:05 HAM</p><a class="btn gold" href="https://www.google.com/search?q=EW7539%20current%20flight%20status" target="_blank">Live-Status öffnen</a></div>
-        </div>
+        <div class="flight-item"><div class="eyebrow">Hinflug · Do. 28.05.2026</div><h4>EW7536</h4><p class="small">Hamburg → Málaga<br>Geplant: 14:35 HAM → 18:00 AGP</p><a class="btn gold" href="https://www.google.com/search?q=EW7536%20current%20flight%20status" target="_blank">Live-Status öffnen</a></div>
+        <div class="flight-item"><div class="eyebrow">Rückflug · So. 31.05.2026</div><h4>EW7539</h4><p class="small">Málaga → Hamburg<br>Geplant: 17:50 AGP → 21:05 HAM</p><a class="btn gold" href="https://www.google.com/search?q=EW7539%20current%20flight%20status" target="_blank">Live-Status öffnen</a></div>
       </section>
 
       <section class="card">
@@ -111,9 +117,37 @@
       </section>
 
       <section class="card wide">
-        <div class="card-head"><div><div class="eyebrow">Map Overview</div><h3>Locations & Empfehlungen</h3><p class="small">Location auswählen und direkt in Google Maps öffnen.</p></div><div class="icon">📍</div></div>
-        <div class="map-list" id="mapList"></div>
-        <div class="selected"><div class="selected-box" id="selectedBox"></div></div>
+        <div class="card-head"><div><div class="eyebrow">Map</div><h3>Karte & Locations</h3><p class="small">Die Legende ist jetzt kompakt. Wähle einen Spot aus, Karte und Buttons passen sich an.</p></div><div class="icon">📍</div></div>
+        <div class="map-wrap">
+          <div class="map-top">
+            <div class="chip-row" id="chipRow"></div>
+            <div class="selected-title">
+              <div>
+                <div class="eyebrow" id="selectedCategory">Ausgewählt</div>
+                <h4 id="selectedName">Villa / Unterkunft</h4>
+                <p class="small" id="selectedAddress"></p>
+              </div>
+              <div class="selected-icon" id="selectedIcon">🏠</div>
+            </div>
+            <div class="actions">
+              <a class="btn light" id="openMaps" target="_blank">In Maps öffnen ↗</a>
+              <a class="btn" id="routeFromVilla" target="_blank">Route ab Villa</a>
+            </div>
+          </div>
+          <div class="map-frame">
+            <iframe id="mapFrame" title="Google Maps Vorschau" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="map-badge">Google Maps Preview</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card route-card wide">
+        <div class="card-head"><div><div class="eyebrow">Route Builder</div><h3>Route zwischen Punkten</h3><p class="small">Start und Ziel auswählen, dann direkt in Google Maps öffnen.</p></div><div class="icon">🧭</div></div>
+        <div class="route-box">
+          <select id="routeOrigin" aria-label="Startpunkt"></select>
+          <select id="routeDestination" aria-label="Zielpunkt"></select>
+          <a id="routeOpen" class="btn gold" target="_blank">Route öffnen</a>
+        </div>
       </section>
 
       <section class="card wide">
@@ -132,10 +166,24 @@
   function enc(s){ return encodeURIComponent(s); }
   function mapsSearch(q){ return "https://www.google.com/maps/search/?api=1&query=" + enc(q); }
   function mapsDirections(o,d){ return "https://www.google.com/maps/dir/?api=1&origin=" + enc(o) + "&destination=" + enc(d) + "&travelmode=driving"; }
+  function mapEmbed(q){ return "https://www.google.com/maps?q=" + enc(q) + "&output=embed"; }
   function toast(url){ var t=document.getElementById("toast"); document.getElementById("toastUrl").textContent=url; t.style.display="block"; setTimeout(function(){t.style.display="none"},3500); }
   document.addEventListener("click", function(e){ var a=e.target.closest("a[href]"); if(a) toast(a.href); });
 
   var fixedHome = "Calle Golf del Candado, 44, Málaga, Andalucía 29018";
+  var locations = [
+    {id:"stay",icon:"🏠",label:"Villa",full:"Villa / Unterkunft",cat:"Home Base",address:fixedHome},
+    {id:"padel",icon:"🎾",label:"Padel",full:"Padel Tennis",cat:"Sport",address:"C. Eucaliptus, 8, Málaga-Este, 29018 Málaga, Spanien"},
+    {id:"meson",icon:"🍽️",label:"Mesón",full:"Restaurante Mesón Antonio",cat:"Dinner",address:"Restaurante Mesón Antonio Málaga",url:"https://maps.app.goo.gl/t77CuvPjRQTrwSSm8"},
+    {id:"primitivo",icon:"🍽️",label:"Primitivo",full:"PRIMITIVO Restaurante Málaga",cat:"Dinner",address:"PRIMITIVO RESTAURANTE MÁLAGA"},
+    {id:"pimpi",icon:"🍽️",label:"La Pimpi",full:"La Pimpi",cat:"Dinner",address:"La Pimpi Málaga"},
+    {id:"antigua",icon:"🍽️",label:"Antigua",full:"Antigua Casa de Guardia",cat:"Lunch",address:"Antigua Casa de Guardia Málaga",url:"https://maps.app.goo.gl/bJR41ak7pfPe88vR6"},
+    {id:"rooftops",icon:"🍸",label:"Rooftops",full:"Rooftop Bars",cat:"Drinks",address:"best rooftop bars Málaga"},
+    {id:"beaches",icon:"🌊",label:"Strände",full:"Strände nahe Málaga",cat:"Beach",address:"best beach near El Candado Málaga"},
+    {id:"markets",icon:"🛒",label:"Markets",full:"Supermärkte nahe Villa",cat:"Supplies",address:"supermarket near Calle Golf del Candado 44 Málaga"},
+    {id:"clubs",icon:"🎵",label:"Clubs",full:"Clubs in Málaga",cat:"Nightlife",address:"best club Málaga"}
+  ];
+
   var days = [
     {id:"thursday",label:"Donnerstag",sub:"Anreise & Villa Night",items:[
       ["12:35","Treffpunkt Flughafen Hamburg","Startpunkt ist 2 Stunden vor Abflug am Flughafen Hamburg.","✈️"],
@@ -178,18 +226,7 @@
       ["17:50","Rückflug nach Hamburg","Flug EW7539 zurück nach Hamburg. Geplante Ankunft in Hamburg: 21:05 Uhr.","✈️","https://www.google.com/search?q=EW7539%20current%20flight%20status","Flugstatus öffnen"]
     ]}
   ];
-  var mapLocations = [
-    ["🏠","Villa / Unterkunft","Home Base",fixedHome],
-    ["🎾","Padel Tennis","Sport","C. Eucaliptus, 8, Málaga-Este, 29018 Málaga, Spanien"],
-    ["🍽️","Restaurante Mesón Antonio","Dinner","Restaurante Mesón Antonio Málaga"],
-    ["🍽️","PRIMITIVO Restaurante Málaga","Dinner","PRIMITIVO RESTAURANTE MÁLAGA"],
-    ["🍽️","La Pimpi","Dinner","La Pimpi Málaga"],
-    ["🍽️","Antigua Casa de Guardia","Lunch","Antigua Casa de Guardia Málaga"],
-    ["🍸","Rooftop Bars","Drinks","best rooftop bars Málaga"],
-    ["🌊","Strände nahe Málaga","Beach","best beach near El Candado Málaga"],
-    ["🛒","Supermärkte nahe Villa","Supplies","supermarket near Calle Golf del Candado 44 Málaga"],
-    ["🎵","Clubs in Málaga","Nightlife","best club Málaga"]
-  ];
+
   var groups = [
     ["Dinner Spots","Reserved Tables","🍽️",[["Donnerstag: Abendessen in der Villa",mapsSearch(fixedHome)],["Freitag: Restaurante Mesón Antonio","https://maps.app.goo.gl/t77CuvPjRQTrwSSm8"],["Samstag: PRIMITIVO Restaurante Málaga",mapsSearch("PRIMITIVO RESTAURANTE MÁLAGA")],["La Pimpi",mapsSearch("La Pimpi Málaga")]]],
     ["Rooftop Bars","Sunset Drinks","🍸",["La Terraza de Valeria","La Terraza de Larios","The Top – Molina Lario","La Terraza de Alcazaba","Lolita Skyview Pool & Lounge","Terraza de San Telmo"]],
@@ -200,9 +237,7 @@
   ];
 
   function sha256(text) {
-    var encoder = new TextEncoder();
-    var data = encoder.encode(text);
-    return crypto.subtle.digest("SHA-256", data).then(function(buffer) {
+    return crypto.subtle.digest("SHA-256", new TextEncoder().encode(text)).then(function(buffer) {
       return Array.prototype.map.call(new Uint8Array(buffer), function(byte) {
         return ("00" + byte.toString(16)).slice(-2);
       }).join("");
@@ -212,13 +247,11 @@
   function unlock(){
     var val = document.getElementById("password").value.trim();
     var error = document.getElementById("error");
-
     if (!window.crypto || !crypto.subtle || !window.TextEncoder) {
-      error.textContent = "Dein Browser unterstützt die Passwortprüfung nicht. Bitte Safari, Chrome oder Edge verwenden.";
+      error.textContent = "Bitte Safari, Chrome oder Edge verwenden.";
       error.style.display = "block";
       return;
     }
-
     sha256(val).then(function(hash) {
       if(hash === PASSWORD_HASH){
         document.getElementById("login").style.display="none";
@@ -229,9 +262,6 @@
         error.textContent = "Passwort stimmt noch nicht.";
         error.style.display="block";
       }
-    }).catch(function() {
-      error.textContent = "Passwortprüfung fehlgeschlagen. Bitte Browser aktualisieren oder Chrome/Safari verwenden.";
-      error.style.display="block";
     });
   }
   document.getElementById("unlock").addEventListener("click", unlock);
@@ -254,18 +284,47 @@
     });
   }
 
-  var selectedMap = 0;
+  var selectedLocation = 0;
   function renderMap(){
-    var list=document.getElementById("mapList"); list.innerHTML="";
-    mapLocations.forEach(function(l,i){
-      var b=document.createElement("button"); b.type="button"; b.className="map-row"+(i===selectedMap?" active":"");
-      b.innerHTML='<span class="map-ico">'+l[0]+'</span><span><b>'+l[1]+'</b><br><span class="eyebrow">'+l[2]+'</span></span>';
-      b.onclick=function(){selectedMap=i;renderMap()};
-      list.appendChild(b);
+    var row = document.getElementById("chipRow"); row.innerHTML="";
+    locations.forEach(function(l,i){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "chip" + (i===selectedLocation ? " active" : "");
+      b.innerHTML = "<span>"+l.icon+"</span><span>"+l.label+"</span>";
+      b.onclick = function(){ selectedLocation=i; renderMap(); };
+      row.appendChild(b);
     });
-    var l=mapLocations[selectedMap];
-    document.getElementById("selectedBox").innerHTML='<div class="eyebrow">Ausgewählt</div><h3>'+l[1]+'</h3><p class="small">'+l[3]+'</p><div class="actions"><a class="btn light" target="_blank" href="'+mapsSearch(l[3])+'">In Maps öffnen ↗</a><a class="btn" target="_blank" href="'+mapsDirections(fixedHome,l[3])+'">Route ab Villa</a></div>';
+    var l=locations[selectedLocation];
+    document.getElementById("selectedCategory").textContent = l.cat;
+    document.getElementById("selectedName").textContent = l.full;
+    document.getElementById("selectedAddress").textContent = l.address;
+    document.getElementById("selectedIcon").textContent = l.icon;
+    document.getElementById("openMaps").href = l.url || mapsSearch(l.address);
+    document.getElementById("routeFromVilla").href = mapsDirections(fixedHome, l.address);
+    document.getElementById("mapFrame").src = mapEmbed(l.address);
   }
+
+  function renderRouteBuilder(){
+    var origin = document.getElementById("routeOrigin");
+    var dest = document.getElementById("routeDestination");
+    origin.innerHTML = ""; dest.innerHTML = "";
+    locations.forEach(function(l,i){
+      var o1 = document.createElement("option");
+      o1.value = l.address; o1.textContent = l.full;
+      origin.appendChild(o1);
+      var o2 = document.createElement("option");
+      o2.value = l.address; o2.textContent = l.full;
+      dest.appendChild(o2);
+    });
+    origin.value = fixedHome;
+    dest.value = locations[1].address;
+    function update(){
+      document.getElementById("routeOpen").href = mapsDirections(origin.value, dest.value);
+    }
+    origin.onchange = update; dest.onchange = update; update();
+  }
+
   function renderSpots(){
     var root=document.getElementById("spots"); root.innerHTML="";
     groups.forEach(function(g,idx){
@@ -279,7 +338,11 @@
       det.innerHTML=html; root.appendChild(det);
     });
   }
-  renderDays(); renderMap(); renderSpots();
+
+  renderDays();
+  renderMap();
+  renderRouteBuilder();
+  renderSpots();
 })();
 </script>
 </body>
