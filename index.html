@@ -128,7 +128,7 @@
 
 <script>
 (function(){
-  var PASSWORD = "JGA-Denecke2026";
+  var PASSWORD_HASH = "1e32b1d0fb2228cb9886b42df532973acaedbae1ccc9a21819b3f457aef3137b";
   function enc(s){ return encodeURIComponent(s); }
   function mapsSearch(q){ return "https://www.google.com/maps/search/?api=1&query=" + enc(q); }
   function mapsDirections(o,d){ return "https://www.google.com/maps/dir/?api=1&origin=" + enc(o) + "&destination=" + enc(d) + "&travelmode=driving"; }
@@ -199,15 +199,40 @@
     ["Clubs in Málaga","After Dark","🎵",["Sala Gold","Discoteca Andén","Liceo de Málaga","Barsovia Club"]]
   ];
 
+  function sha256(text) {
+    var encoder = new TextEncoder();
+    var data = encoder.encode(text);
+    return crypto.subtle.digest("SHA-256", data).then(function(buffer) {
+      return Array.prototype.map.call(new Uint8Array(buffer), function(byte) {
+        return ("00" + byte.toString(16)).slice(-2);
+      }).join("");
+    });
+  }
+
   function unlock(){
     var val = document.getElementById("password").value.trim();
-    if(val === PASSWORD){
-      document.getElementById("login").style.display="none";
-      document.getElementById("app").style.display="block";
-      window.scrollTo(0,0);
-    } else {
-      document.getElementById("error").style.display="block";
+    var error = document.getElementById("error");
+
+    if (!window.crypto || !crypto.subtle || !window.TextEncoder) {
+      error.textContent = "Dein Browser unterstützt die Passwortprüfung nicht. Bitte Safari, Chrome oder Edge verwenden.";
+      error.style.display = "block";
+      return;
     }
+
+    sha256(val).then(function(hash) {
+      if(hash === PASSWORD_HASH){
+        document.getElementById("login").style.display="none";
+        document.getElementById("app").style.display="block";
+        error.style.display="none";
+        window.scrollTo(0,0);
+      } else {
+        error.textContent = "Passwort stimmt noch nicht.";
+        error.style.display="block";
+      }
+    }).catch(function() {
+      error.textContent = "Passwortprüfung fehlgeschlagen. Bitte Browser aktualisieren oder Chrome/Safari verwenden.";
+      error.style.display="block";
+    });
   }
   document.getElementById("unlock").addEventListener("click", unlock);
   document.getElementById("password").addEventListener("keydown", function(e){ if(e.key==="Enter"){ e.preventDefault(); unlock(); }});
