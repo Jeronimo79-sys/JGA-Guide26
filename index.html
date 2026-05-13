@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#071B33" />
+  <title>Costa del Sol Bachelor Club</title>
+  <style>
+    :root{--navy:#071B33;--gold:#B98A38;--sand:#F7F2E8;--cream:#FDFBF7;--muted:#6b7280}
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--sand);color:var(--navy);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    body{min-height:100vh}
+    a{color:inherit;text-decoration:none}
+    button,input,select{font:inherit}
+    .hidden{display:none!important}
+    .screen{min-height:100vh;padding:22px}
+    .center{display:flex;align-items:center;justify-content:center}
+    .login-bg{background:radial-gradient(circle at top,#fffaf0 0%,#f7f2e8 55%,#e9dcc4 100%)}
+    .login-card{width:100%;max-width:430px;background:rgba(255,255,255,.84);border:1px solid rgba(185,138,56,.35);border-radius:30px;padding:28px;text-align:center;box-shadow:0 18px 50px rgba(7,27,51,.16)}
+    .crest{width:112px;height:112px;border:2px solid var(--gold);border-radius:56px 56px 18px 18px;margin:0 auto 18px;background:#F6F1E7;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--navy)}
+    .sun{width:30px;height:30px;border-radius:50%;border:2px solid var(--gold);position:relative;margin-bottom:6px}
+    .sun:before,.sun:after{content:"";position:absolute;background:var(--gold);left:50%;top:50%;transform:translate(-50%,-50%)}
+    .sun:before{width:46px;height:2px}.sun:after{height:46px;width:2px}
+    .palm{font-size:38px;line-height:1}
+    .eyebrow{color:var(--gold);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.28em}
+    h1,h2,h3,h4{font-family:Georgia,"Times New Roman",serif;margin:0}
+    .title{font-size:33px;text-transform:uppercase;letter-spacing:.12em}
+    .subtitle{font-size:18px;text-transform:uppercase;letter-spacing:.22em;margin-top:6px}
+    .copy{font-size:14px;line-height:1.6;color:rgba(7,27,51,.68);margin:18px auto 0;max-width:320px}
+    .pw{width:100%;margin-top:22px;border:1px solid rgba(185,138,56,.42);background:white;border-radius:18px;padding:15px;text-align:center;outline:none}
+    .pw:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(185,138,56,.18)}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;border:none;border-radius:18px;padding:15px 18px;background:var(--navy);color:white;font-weight:700;margin-top:12px;cursor:pointer}
+    .btn.gold{background:var(--gold)} .btn.light{background:white;color:var(--navy);border:1px solid rgba(185,138,56,.35)}
+    .error{color:#a21a1a;font-size:14px;margin:10px 0 0;display:none}
+    .app{display:none}
+    header{padding:30px 20px;text-align:center;background:radial-gradient(circle at top,#fffaf0 0%,#f7f2e8 52%,#efe3cc 100%);border-bottom:1px solid rgba(185,138,56,.3)}
+    header .crest{background:rgba(255,255,255,.5);box-shadow:0 6px 18px rgba(7,27,51,.08)}
+    .rule{display:flex;align-items:center;gap:10px;margin:12px auto;max-width:260px}.rule span{height:1px;background:var(--gold);flex:1}.rule i{width:8px;height:8px;background:var(--gold);transform:rotate(45deg)}
+    main{padding:18px;max-width:980px;margin:0 auto;display:grid;gap:18px}
+    .card{background:white;border:1px solid rgba(185,138,56,.25);border-radius:24px;box-shadow:0 6px 18px rgba(7,27,51,.06);overflow:hidden}
+    .card.pad{padding:18px}
+    .card-head{padding:18px;border-bottom:1px solid rgba(185,138,56,.2);display:flex;align-items:center;justify-content:space-between;gap:14px}
+    .card-head h3{font-size:24px}.small{font-size:13px;color:rgba(7,27,51,.64);line-height:1.5}.icon{font-size:24px;color:var(--gold)}
+    .flight{background:var(--navy);color:white}.flight .small{color:rgba(255,255,255,.65)}.flight .card-head{border-color:rgba(255,255,255,.12)}
+    .flight-item{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:15px;margin-top:12px}
+    .flight-item h4{font-size:26px;margin:4px 0}
+    .tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:15px}
+    .tab{border:1px solid rgba(185,138,56,.25);background:#FDFBF7;color:var(--navy);border-radius:18px;padding:12px;text-align:left}
+    .tab.active{background:var(--navy);color:white;border-color:var(--gold)}
+    .tab b{display:block;color:var(--gold);font-size:10px;text-transform:uppercase;letter-spacing:.18em}.tab span{font-family:Georgia,serif;font-size:14px}
+    .day-panel{padding:0 15px 15px}
+    .event{display:flex;gap:12px;background:#FDFBF7;border:1px solid rgba(185,138,56,.18);border-radius:18px;padding:13px;margin-bottom:10px}
+    .time{min-width:74px;background:white;border-radius:14px;padding:9px 6px;text-align:center;font-weight:800;font-size:12px;color:var(--navy);box-shadow:0 3px 10px rgba(7,27,51,.05)}
+    .event h4{font-size:18px;margin-bottom:4px}.event p{margin:0;font-size:13px;line-height:1.45;color:rgba(7,27,51,.65)}
+    .mini-link{display:inline-flex;margin-top:9px;border:1px solid rgba(185,138,56,.35);border-radius:999px;padding:7px 10px;font-size:12px;font-weight:700}
+    .map-list{display:grid;gap:9px;padding:15px;background:#FDFBF7}
+    .map-row{display:flex;gap:10px;align-items:center;text-align:left;width:100%;border:1px solid rgba(185,138,56,.2);border-radius:17px;padding:12px;background:white;color:var(--navy)}
+    .map-row.active{background:var(--navy);color:white;border-color:var(--gold)}
+    .map-ico{width:40px;height:40px;border-radius:14px;background:#F6F1E7;color:var(--gold);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .map-row.active .map-ico{background:rgba(255,255,255,.12)}
+    .selected{padding:15px;background:#E9DDC8}.selected-box{background:rgba(255,255,255,.92);border:1px solid rgba(185,138,56,.2);border-radius:20px;padding:15px}
+    .actions{display:grid;grid-template-columns:1fr;gap:8px;margin-top:13px}
+    .spots{display:grid;gap:10px;padding:15px}
+    details{background:#FDFBF7;border:1px solid rgba(185,138,56,.2);border-radius:18px;padding:14px}
+    summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    summary::-webkit-details-marker{display:none}
+    .spot-link{display:flex;align-items:center;justify-content:space-between;background:white;border-radius:14px;padding:11px;margin-top:8px;font-size:14px;color:rgba(7,27,51,.78)}
+    .toast{position:fixed;left:12px;right:12px;bottom:12px;background:rgba(255,255,255,.96);border:1px solid rgba(185,138,56,.35);border-radius:20px;padding:13px;box-shadow:0 12px 30px rgba(7,27,51,.18);display:none;z-index:10}
+    .toast p{margin:3px 0;font-size:12px;word-break:break-all}
+    footer{text-align:center;padding:12px 20px 28px}
+    @media(min-width:760px){main{grid-template-columns:1fr 1fr}.wide{grid-column:1/-1}.actions{grid-template-columns:1fr 1fr}.tabs{grid-template-columns:repeat(4,1fr)}}
+  </style>
+</head>
+<body>
+  <section id="login" class="screen center login-bg">
+    <div class="login-card">
+      <div class="crest"><div class="sun"></div><div class="palm">🌴</div></div>
+      <div class="eyebrow">Private Access</div>
+      <h1 class="title">Costa del Sol</h1>
+      <h2 class="subtitle">Bachelor Club</h2>
+      <p class="copy">Diese Seite ist nur für die Crew bestimmt. Bitte Passwort eingeben, um Route, Spots und Ablauf zu öffnen.</p>
+      <input id="password" class="pw" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Passwort" />
+      <button id="unlock" class="btn" type="button">Seite öffnen</button>
+      <p id="error" class="error">Passwort stimmt noch nicht.</p>
+    </div>
+  </section>
+
+  <div id="app" class="app">
+    <header>
+      <div class="crest"><div class="sun"></div><div class="palm">🌴</div></div>
+      <div class="eyebrow">Málaga · 36.7213° N · 4.4214° W</div>
+      <h1 class="title">Costa del Sol</h1>
+      <div class="rule"><span></span><i></i><span></span></div>
+      <h2 class="subtitle">Bachelor Club</h2>
+      <p class="copy">Private Trip Guide für die Crew: Karte, Routenlinks, Ablauf und kuratierte Spots.</p>
+    </header>
+
+    <main>
+      <section class="card flight">
+        <div class="card-head"><div><div class="eyebrow">Flights</div><h3>Aktuelle Fluginfos</h3></div><div class="icon">✈️</div></div>
+        <div class="card pad" style="background:transparent;border:none;box-shadow:none;padding-top:4px">
+          <div class="flight-item"><div class="eyebrow">Hinflug · Do. 28.05.2026</div><h4>EW7536</h4><p class="small">Hamburg → Málaga<br>Geplant: 14:35 HAM → 18:00 AGP</p><a class="btn gold" href="https://www.google.com/search?q=EW7536%20current%20flight%20status" target="_blank">Live-Status öffnen</a></div>
+          <div class="flight-item"><div class="eyebrow">Rückflug · So. 31.05.2026</div><h4>EW7539</h4><p class="small">Málaga → Hamburg<br>Geplant: 17:50 AGP → 21:05 HAM</p><a class="btn gold" href="https://www.google.com/search?q=EW7539%20current%20flight%20status" target="_blank">Live-Status öffnen</a></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><div><div class="eyebrow">Timeline</div><h3>Ablauf nach Tagen</h3></div><div class="icon">📅</div></div>
+        <div class="tabs" id="tabs"></div>
+        <div class="day-panel" id="dayPanel"></div>
+      </section>
+
+      <section class="card wide">
+        <div class="card-head"><div><div class="eyebrow">Map Overview</div><h3>Locations & Empfehlungen</h3><p class="small">Location auswählen und direkt in Google Maps öffnen.</p></div><div class="icon">📍</div></div>
+        <div class="map-list" id="mapList"></div>
+        <div class="selected"><div class="selected-box" id="selectedBox"></div></div>
+      </section>
+
+      <section class="card wide">
+        <div class="card-head"><div><div class="eyebrow">Curated</div><h3>Optionale Spots</h3></div><div class="icon">👑</div></div>
+        <div class="spots" id="spots"></div>
+      </section>
+    </main>
+    <footer><div class="eyebrow">Costa del Sol Bachelor Club · Private QR Access</div></footer>
+  </div>
+
+  <div id="toast" class="toast"><div class="eyebrow">Klick erkannt</div><p id="toastUrl"></p><p>Falls keine App aufgeht, Link länger gedrückt halten und im Browser öffnen.</p></div>
+
+<script>
+(function(){
+  var PASSWORD = "JGA-Denecke2026";
+  function enc(s){ return encodeURIComponent(s); }
+  function mapsSearch(q){ return "https://www.google.com/maps/search/?api=1&query=" + enc(q); }
+  function mapsDirections(o,d){ return "https://www.google.com/maps/dir/?api=1&origin=" + enc(o) + "&destination=" + enc(d) + "&travelmode=driving"; }
+  function toast(url){ var t=document.getElementById("toast"); document.getElementById("toastUrl").textContent=url; t.style.display="block"; setTimeout(function(){t.style.display="none"},3500); }
+  document.addEventListener("click", function(e){ var a=e.target.closest("a[href]"); if(a) toast(a.href); });
+
+  var fixedHome = "Calle Golf del Candado, 44, Málaga, Andalucía 29018";
+  var days = [
+    {id:"thursday",label:"Donnerstag",sub:"Anreise & Villa Night",items:[
+      ["12:35","Treffpunkt Flughafen Hamburg","Startpunkt ist 2 Stunden vor Abflug am Flughafen Hamburg.","✈️"],
+      ["14:35","Abflug Hamburg","Flug EW7536 nach Málaga. Bitte Status am Reisetag nochmal prüfen.","✈️","https://www.google.com/search?q=EW7536%20current%20flight%20status","Flugstatus öffnen"],
+      ["18:00","Landung in Málaga","Geplante Ankunft in Málaga. Danach Gepäck einsammeln und zum Transfer.","✈️"],
+      ["18:25","Transfer zur Unterkunft","Fahrt zur Villa / Unterkunft in El Candado.","🧭",mapsDirections("Málaga Airport",fixedHome),"Route öffnen"],
+      ["19:10","30 min Chillen in der Villa","Ankommen, kurz runterkommen, Zimmer beziehen.","🏠"],
+      ["19:40","80 min Einkaufen im Mercadona","Getränke, Snacks und Frühstück für die Villa einkaufen.","🛒",mapsSearch("Mercadona near Calle Golf del Candado 44 Málaga"),"Mercadona suchen"],
+      ["21:00","Abendessen in der Villa","Entspannter erster Abend mit Dinner in der Unterkunft.","🍽️"],
+      ["Open End","Abend in der Villa","Drinks, Musik und Ankommen im Costa del Sol Bachelor Club.","🍸"]
+    ]},
+    {id:"friday",label:"Freitag",sub:"City Day & Night Out",items:[
+      ["10:00","Frühstück in der Villa","Gemeinsames Frühstück und langsam in den Tag starten.","🍽️"],
+      ["11:30","Transfer in die Innenstadt","Fahrt von der Villa Richtung Málaga Zentrum.","🧭",mapsDirections(fixedHome,"Málaga Centro"),"Route öffnen"],
+      ["2 h","Sightseeing Málaga","Altstadt, Kathedrale, Alcazaba, Hafen / Muelle Uno.","📍",mapsSearch("Málaga Sehenswürdigkeiten Altstadt Kathedrale Alcazaba Muelle Uno"),"Orte ansehen"],
+      ["2 h","Mittagessen & Drinks","Lunch in der Stadt plus erste Drinks.","🍽️",mapsSearch("best lunch drinks Málaga centro"),"Lunch-Spots öffnen"],
+      ["Nachmittag","Transfer zurück zur Villa","Zurückfahren, chillen und frisch machen.","🧭",mapsDirections("Málaga Centro",fixedHome),"Route öffnen"],
+      ["ca. 4 h","Chillen & Umziehen","Free time in der Villa, Outfits fürs Abendessen und den Abend vorbereiten.","🏠"],
+      ["Abends","Transfer zum Restaurante Mesón Antonio","Fahrt zum reservierten Dinner-Spot in der Innenstadt.","🧭","https://maps.app.goo.gl/t77CuvPjRQTrwSSm8","Dinner-Location öffnen"],
+      ["2 h","Restaurante Mesón Antonio","Dinner in der Stadt.","🍽️","https://maps.app.goo.gl/t77CuvPjRQTrwSSm8","Maps-Link öffnen"],
+      ["2 h","Rooftop Bar","Drinks mit Aussicht über Málaga.","🍸",mapsSearch("best rooftop bar Málaga"),"Rooftops öffnen"],
+      ["Open End","Club in Málaga","Feiern bis Open End.","🎵",mapsSearch("best club Málaga"),"Clubs öffnen"]
+    ]},
+    {id:"saturday",label:"Samstag",sub:"Padel, Beach & Dinner",items:[
+      ["10:00","Frühstück","Kurzes Frühstück in der Villa.","🍽️"],
+      ["30 min","Transfer zum Padel Tennis","Fahrt zur Padel-Anlage.","🧭",mapsDirections(fixedHome,"C. Eucaliptus, 8, Málaga-Este, 29018 Málaga"),"Route öffnen"],
+      ["2 h","Padel Tennis","2 Stunden spielen, Teams / kleines Turnier möglich.","🎾",mapsSearch("C. Eucaliptus, 8, Málaga-Este, 29018 Málaga"),"Padel öffnen"],
+      ["30 min","Schwimmen am Strand","Zum schönsten Strand in der Nähe der Unterkunft und kurz ins Wasser.","🌊",mapsSearch("best beach near El Candado Málaga"),"Strand suchen"],
+      ["30 min","Bier am Strand","Kurzer Beach-Bar-Stopp für ein Bier am Strand.","🍺",mapsSearch("beach bar El Candado Málaga"),"Beach-Bar suchen"],
+      ["Nachmittag","Zurück zur Unterkunft","Free time in der Villa bis zum Abendessen.","🏠",mapsDirections("Playa El Candado Málaga",fixedHome),"Route öffnen"],
+      ["21:00","PRIMITIVO Restaurante Málaga","Tisch ist um 21:00 Uhr reserviert.","🍽️",mapsSearch("PRIMITIVO RESTAURANTE MÁLAGA"),"Restaurant öffnen"],
+      ["90 min","Rooftop Bar","Nach dem Dinner Drinks auf einer Rooftop Bar.","🍸",mapsSearch("best rooftop bar Málaga"),"Rooftops öffnen"],
+      ["Open End","Club in Málaga","Danach wieder feiern in einem Club in Málaga.","🎵",mapsSearch("best club Málaga"),"Clubs öffnen"]
+    ]},
+    {id:"sunday",label:"Sonntag",sub:"Chillen & Rückflug",items:[
+      ["11:00","Frühstück","Spätes Frühstück in der Villa.","🍽️"],
+      ["bis 15:00","Chillen in der Villa","Entspannt ausklingen lassen, packen und checkout-ready machen.","🏠"],
+      ["15:00","Transfer zum Flughafen Málaga","Abfahrt mit Puffer, damit ihr rechtzeitig am Flughafen seid.","🧭",mapsDirections(fixedHome,"Málaga Airport"),"Route zum Flughafen"],
+      ["15:50","Am Flughafen Málaga sein","Geplant 2 Stunden vor Rückflug am Flughafen Málaga.","✈️"],
+      ["17:50","Rückflug nach Hamburg","Flug EW7539 zurück nach Hamburg. Geplante Ankunft in Hamburg: 21:05 Uhr.","✈️","https://www.google.com/search?q=EW7539%20current%20flight%20status","Flugstatus öffnen"]
+    ]}
+  ];
+  var mapLocations = [
+    ["🏠","Villa / Unterkunft","Home Base",fixedHome],
+    ["🎾","Padel Tennis","Sport","C. Eucaliptus, 8, Málaga-Este, 29018 Málaga, Spanien"],
+    ["🍽️","Restaurante Mesón Antonio","Dinner","Restaurante Mesón Antonio Málaga"],
+    ["🍽️","PRIMITIVO Restaurante Málaga","Dinner","PRIMITIVO RESTAURANTE MÁLAGA"],
+    ["🍽️","La Pimpi","Dinner","La Pimpi Málaga"],
+    ["🍽️","Antigua Casa de Guardia","Lunch","Antigua Casa de Guardia Málaga"],
+    ["🍸","Rooftop Bars","Drinks","best rooftop bars Málaga"],
+    ["🌊","Strände nahe Málaga","Beach","best beach near El Candado Málaga"],
+    ["🛒","Supermärkte nahe Villa","Supplies","supermarket near Calle Golf del Candado 44 Málaga"],
+    ["🎵","Clubs in Málaga","Nightlife","best club Málaga"]
+  ];
+  var groups = [
+    ["Dinner Spots","Reserved Tables","🍽️",[["Donnerstag: Abendessen in der Villa",mapsSearch(fixedHome)],["Freitag: Restaurante Mesón Antonio","https://maps.app.goo.gl/t77CuvPjRQTrwSSm8"],["Samstag: PRIMITIVO Restaurante Málaga",mapsSearch("PRIMITIVO RESTAURANTE MÁLAGA")],["La Pimpi",mapsSearch("La Pimpi Málaga")]]],
+    ["Rooftop Bars","Sunset Drinks","🍸",["La Terraza de Valeria","La Terraza de Larios","The Top – Molina Lario","La Terraza de Alcazaba","Lolita Skyview Pool & Lounge","Terraza de San Telmo"]],
+    ["Mittagessen in Málaga","Tapas & Seafood","🍽️",[["Antigua Casa de Guardia","https://maps.app.goo.gl/bJR41ak7pfPe88vR6"],"Casa Lola","Mercado de Atarazanas","El Tintero / El Palo","Beluga"]],
+    ["Schöne Strände","Beach Session","🌊",["Playa de la Malagueta","Playa de Pedregalejo","Playa Peñón del Cuervo","Playa de la Caleta"]],
+    ["Supermärkte nahe Unterkunft","Villa Stock-Up","🛒",["supermarket near Calle Golf del Candado 44 Málaga"]],
+    ["Clubs in Málaga","After Dark","🎵",["Sala Gold","Discoteca Andén","Liceo de Málaga","Barsovia Club"]]
+  ];
+
+  function unlock(){
+    var val = document.getElementById("password").value.trim();
+    if(val === PASSWORD){
+      document.getElementById("login").style.display="none";
+      document.getElementById("app").style.display="block";
+      window.scrollTo(0,0);
+    } else {
+      document.getElementById("error").style.display="block";
+    }
+  }
+  document.getElementById("unlock").addEventListener("click", unlock);
+  document.getElementById("password").addEventListener("keydown", function(e){ if(e.key==="Enter"){ e.preventDefault(); unlock(); }});
+
+  var activeDay = 0;
+  function renderDays(){
+    var tabs = document.getElementById("tabs"); tabs.innerHTML="";
+    days.forEach(function(d,i){
+      var b=document.createElement("button"); b.type="button"; b.className="tab"+(i===activeDay?" active":"");
+      b.innerHTML="<b>"+d.label+"</b><span>"+d.sub+"</span>";
+      b.onclick=function(){activeDay=i;renderDays()};
+      tabs.appendChild(b);
+    });
+    var panel=document.getElementById("dayPanel"); panel.innerHTML="";
+    days[activeDay].items.forEach(function(it){
+      var div=document.createElement("div"); div.className="event";
+      div.innerHTML='<div class="time">'+it[3]+'<br>'+it[0]+'</div><div><h4>'+it[1]+'</h4><p>'+it[2]+'</p>'+(it[4]?'<a class="mini-link" target="_blank" href="'+it[4]+'">'+(it[5]||"Link öffnen")+' ↗</a>':'')+'</div>';
+      panel.appendChild(div);
+    });
+  }
+
+  var selectedMap = 0;
+  function renderMap(){
+    var list=document.getElementById("mapList"); list.innerHTML="";
+    mapLocations.forEach(function(l,i){
+      var b=document.createElement("button"); b.type="button"; b.className="map-row"+(i===selectedMap?" active":"");
+      b.innerHTML='<span class="map-ico">'+l[0]+'</span><span><b>'+l[1]+'</b><br><span class="eyebrow">'+l[2]+'</span></span>';
+      b.onclick=function(){selectedMap=i;renderMap()};
+      list.appendChild(b);
+    });
+    var l=mapLocations[selectedMap];
+    document.getElementById("selectedBox").innerHTML='<div class="eyebrow">Ausgewählt</div><h3>'+l[1]+'</h3><p class="small">'+l[3]+'</p><div class="actions"><a class="btn light" target="_blank" href="'+mapsSearch(l[3])+'">In Maps öffnen ↗</a><a class="btn" target="_blank" href="'+mapsDirections(fixedHome,l[3])+'">Route ab Villa</a></div>';
+  }
+  function renderSpots(){
+    var root=document.getElementById("spots"); root.innerHTML="";
+    groups.forEach(function(g,idx){
+      var det=document.createElement("details"); if(idx===0) det.open=true;
+      var html='<summary><span><span class="icon">'+g[2]+'</span> <b>'+g[0]+'</b><br><span class="eyebrow">'+g[1]+'</span></span><span>›</span></summary>';
+      g[3].forEach(function(item){
+        var label=Array.isArray(item)?item[0]:item;
+        var href=Array.isArray(item)?item[1]:mapsSearch(item+" Málaga");
+        html+='<a class="spot-link" target="_blank" href="'+href+'"><span>'+label+'</span><span>↗</span></a>';
+      });
+      det.innerHTML=html; root.appendChild(det);
+    });
+  }
+  renderDays(); renderMap(); renderSpots();
+})();
+</script>
+</body>
+</html>
